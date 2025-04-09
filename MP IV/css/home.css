@@ -1,0 +1,115 @@
+
+
+
+body {
+    font-family: pacifico, cursive;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: rgb(27, 26, 26);
+}
+body.with-background {
+    background: url('../image/home.jpg') no-repeat center center/cover;
+}
+
+body.no-background {
+    background: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(255, 234, 234, 0.8);
+}
+.navbar a {
+    color: rgb(18, 18, 18);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+.navbar a:hover {
+    text-decoration: underline;
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    flex-direction: column;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+.hero h1 {
+    font-size: 70px;
+    margin-bottom: 50px;
+}
+.hero p {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    width:90%;
+}
+.cta-button {
+    color: rgb(26, 25, 25);
+    padding: 15px 30px;
+    font-size: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    text-decoration : underline;
+}
+.cta-button:hover {
+    background-color: darkpurple;
+}
+.about-content {
+
+padding: 40px;
+margin: 10px ;
+border-radius: 10px;
+width: 50%;
+max-width: 1200px;
+text-align: center;
+backdrop-filter: blur(10px);
+}
+h3 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    width : 90%;
+}
+h4 {
+    font-size: 20px;
+    margin-bottom: 40px;
+    text-decoration: underline;
+    width : 90%;
+}
+h5 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    width : 90%;  
+
+}
+p{
+     font-size: 20px;
+     padding: 40px;
+     margin: 20px ;
+     border-radius: 10px;
+     width: 100%;
+     max-width: 1200px;
+     text-align: left;
+     
+     
+}
+
+
+
+
+
+
+
+

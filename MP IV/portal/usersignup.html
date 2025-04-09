@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHaven - User Signup</title>
+    <link rel="stylesheet" href="../css/signup.css"> <!-- Link to the same CSS file -->
+    <link rel="icon" href="C:\Users\Swathi Dharsan\Desktop\MP-III\images\logo.jpeg" type="image/png">
+</head>
+<body style="background-image: url('../image/login.jpg'); background-size: center;"></body>
+<body>
+    <div class="login-container">
+        <h2>SIGNUP</h2>
+        <form action="signup.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="13" max="120" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm_password" required>
+
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="../portal/user.html">Login here</a></p> <!-- Link to the login page -->
+        </form>
+    </div>
+</body>
+</html>

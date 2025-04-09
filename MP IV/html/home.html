@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Women's Safety</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+        body.without-background {
+            background: none;
+            background-color: white; /* Or any other solid color you prefer */
+        }
+        
+        .features-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .features-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 20%;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            width: 100%;
+        }
+
+        .feature-box button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .feature-display {
+            width: 50%;
+            text-align: right;
+        }
+
+        .feature-display img {
+           display: none;
+           width: 100%;       /* Ensures it adjusts to container width */
+           max-width: 1000px;  /* Adjust the width as needed */
+           height:700px;     /* Ensures a rectangular shape */
+           object-fit: cover; /* Keeps the image aspect ratio without distortion */
+         border-radius: 100px; /* Adds smooth corners */
+}
+
+    </style>
+</head>
+<body class="with-background">
+    <div class="navbar">
+        <div class="logo"><h2>SafeHaven</h2></div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="../html/portal.html">Portals</a>
+            <a href="../html/contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <div class="hero">
+        <h1>WELCOME TO THE SAFER WORLD!</h1>
+        <p>Let's break the silence and build a powerful ourselves</p>
+    </div>
+    
+    <h2>SafeHaven</h2>
+    <div class="about-content">
+        <p><strong>The platform's focus on women's empowerment and safety has led to the creation of a community support system, where women can connect with each other and share their experiences...</strong></p>
+    </div>
+
+    <h3>Features</h3>
+    <div class="features-wrapper">
+        <div class="features-container">
+            <div class="feature-box">
+                <h4>APP</h4>
+                <button onclick="showFeature('../image/app.jpg')">View</button>
+            </div>
+            <div class="feature-box">
+                <h4>EXCERSICE</h4>
+                <button onclick="showFeature('../image/excersice.jpg')">View</button>
+            </div>
+            <div class="feature-box">
+                <h4>CHATBOT</h4>
+                <button onclick="showFeature('../image/chatbot.jpg')">View</button>
+            </div>
+            <div class="feature-box">
+                <h4>DEFENSE</h4>
+                <button onclick="showFeature('../image/defense.jpg')">View</button>
+            </div>
+            <div class="feature-box">
+                <h4>MAPS</h4>
+                <button onclick="showFeature('../image/map.jpg')">View</button>
+            </div>
+        </div>
+
+        <div class="feature-display">
+            <img id="featureImage" src="" alt="Feature Image">
+        </div>
+    </div>
+    <script>
+        function showFeature(imageSrc) {
+            const img = document.getElementById("featureImage");
+            img.src = imageSrc;
+            img.style.display = "block";
+        }
+    </script>
+    </script>
+    <h5><strong>PORTALS</strong></h5>
+    <p>The User Portal is designed for women who need safety assistance, mental health support, and emergency help.It includes features like an SOS button, AI chatbot support, live location tracking, and counseling services. Users can also access self-help resources and community support groups for emotional well-being.
+    The Counselor Portal is for mental health professionals who provide counseling and emotional support. It allows counselors to manage user cases, offer chat or video-based therapy, share mental wellness resources, and schedule appointments.The platform ensures confidential and secure communication between users and professionals.
+    The NGO & Volunteer Portal helps organizations and volunteers assist women in need. It provides tools for legal aid, emotional support, and safety assistance. NGOs can connect users with resources, shelters, and legal advisors to help them navigate difficult situations.</p>
+    
+    <h3>Contact Us</h3>
+    <p>If you have any questions, feel free to reach out to us!</p>
+   
+    </div>
+    
+    </div>
+        
+</body>
+</html>

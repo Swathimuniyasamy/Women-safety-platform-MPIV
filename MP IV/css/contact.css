@@ -1,0 +1,160 @@
+/* Full background image */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../image/contact.jpg'); /* Full background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Background stays fixed when scrolling */
+    color: #fff; /* Set default text color to white for contrast */
+}
+
+/* Overlay with a transparent black background */
+main {
+    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% transparency */
+    padding: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Styling for the header */
+header {
+    background-color: rgba(76, 175, 80, 0.8); /* Semi-transparent green background */
+    color: #f0ecec; /* Light color for text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #fff; /* White text for the title */
+    font-weight: bold;
+    word-spacing: 4px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 24px;
+    color: #ffd700; /* Gold color for the heading */
+    margin-bottom: 20px;
+}
+
+p {
+    color: #ccc; /* Light grey text for paragraphs */
+    font-size: 16px;
+}
+
+/* Centered layout for content */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh; /* Full screen height */
+    text-align: center;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: #fff; /* White links */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Gold on hover */
+    text-decoration: underline;
+}
+
+/* Contact Container */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto;
+    gap: 30px;
+    color: #fff;
+}
+
+/* Address box without borders or background */
+.address-box {
+    flex: 1;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Form box styling */
+.form-box {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add a soft shadow */
+    color: #333; /* Dark text inside form */
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    color: #333; /* Dark label color */
+}
+
+form input, form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+/* Success and error message styling */
+.success-message {
+    color: green;
+    margin-top: 15px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 15px;
+}
+
+
+
+
+
+/* Footer text hover effect */
+
+
+ 

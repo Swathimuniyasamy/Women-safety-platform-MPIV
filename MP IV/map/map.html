@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHaven Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #map {
+            height: 500px;
+            width: 90%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Find Safe Locations Near You</h2>
+    <button onclick="findNearest()">Find Nearest Safe Zone</button>
+    <div id="map"></div>
+
+    <script>
+        // Initialize map
+        var map = L.map('map', {
+            center: [13.0827, 80.2707],
+            zoom: 12,
+            zoomAnimation: true,
+            fadeAnimation: true
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var locations = [
+            { name: "SafeHaven Chennai", coords: [13.0827, 80.2707] },
+            { name: "SafeHaven Bangalore", coords: [12.9716, 77.5946] },
+            { name: "SafeHaven Delhi", coords: [28.7041, 77.1025] }
+        ];
+
+        var safeIcon = L.icon({
+            iconUrl: 'safe-icon.png',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40]
+        });
+
+        locations.forEach(loc => {
+            L.marker(loc.coords, { icon: safeIcon }).addTo(map)
+                .bindPopup(`<b>${loc.name}</b><br>Safe Zone`).openPopup();
+        });
+
+        map.locate({ setView: true, maxZoom: 16, watch: true });
+
+        map.on('locationfound', e => {
+            L.marker(e.latlng).addTo(map)
+                .bindPopup('📍 <b>You are here</b>').openPopup();
+            map.flyTo(e.latlng, 14, { duration: 2 });
+        });
+
+        function findNearest() {
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(position => {
+        var userLocation = [position.coords.latitude, position.coords.longitude];
+
+        // Find the closest SafeHaven location using proper Haversine formula
+        var closest = locations.reduce((a, b) =>
+            haversineDistance(userLocation, a.coords) < haversineDistance(userLocation, b.coords) ? a : b
+        );
+
+        // Move map to the closest SafeHaven location
+        map.flyTo(closest.coords, 14, { duration: 2 });
+
+        // Add marker for the nearest safe zone
+        L.marker(closest.coords).addTo(map)
+            .bindPopup(`<b>${closest.name}</b><br>Closest Safe Zone`).openPopup();
+    }, () => {
+        alert("Unable to retrieve your location");
+    });
+}
+
+// Function to calculate distance using the Haversine formula
+function haversineDistance(coord1, coord2) {
+    function toRad(x) { return x * Math.PI / 180; }
+
+    var lat1 = coord1[0], lon1 = coord1[1];
+    var lat2 = coord2[0], lon2 = coord2[1];
+
+    var R = 6371; // Radius of the Earth in km
+    var dLat = toRad(lat2 - lat1);
+    var dLon = toRad(lon2 - lon1);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
+}
+</script>
+
+</body>
+</html>

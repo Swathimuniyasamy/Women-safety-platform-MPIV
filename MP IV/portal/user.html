@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHaven - User Login</title>
+    <link rel="stylesheet" href="../css/user.css"> <!-- Linking the external CSS file -->
+    <link rel="icon" href="images/logo.jpeg" type="image/png"> <!-- Updated the icon path to a relative path -->
+</head>
+<body style="background-image: url('../image/login.jpg'); background-size: center;">
+
+    <div class="login-container" style="display: grid;">
+        <h2>User Login</h2>
+        <form action="login.php" method="post">
+            <label for="username">Username / Email:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="checkbox">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+
+            <button type="submit">Login</button>
+            <p><a href="forgot_password.html">Forgot Password?</a></p>
+            <p>Don't have an account? <a href="../portal/usersignup.html">Sign Up</a></p>
+        </form>
+    </div>
+</body>
+</html>

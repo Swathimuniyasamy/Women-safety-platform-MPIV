@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO List</title>
+    <style>
+        /* General reset and styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            /* Set the background image for the entire page */
+            background-image: url('images/NGObackground.jpg'); 
+            background-size: cover; /* Ensures the image covers the entire screen */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #00090a;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #0d0c0c;
+            margin-bottom: 20px;
+        }
+
+        .ngo-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Space between the button boxes */
+            flex-wrap: wrap; /* Wrap buttons to the next line if needed */
+            margin-top: 20px;
+        }
+
+        .ngo-box {
+            width: 250px; /* Set width of each box */
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .ngo-buttons button {
+            padding: 20px 25px; /* Increased vertical padding for taller buttons */
+            font-size: 1.2em;
+            color: rgb(7, 7, 7);
+            background-color: #dfe6e0;
+            border: 2px solid #f4f6f4; /* Border to create rectangle */
+            border-radius: 0; /* Removed border-radius for sharp rectangular corners */
+            cursor: pointer;
+            text-transform: uppercase; /* Makes button text uppercase */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .ngo-buttons button:hover {
+            background-color: white; /* Button background turns white on hover */
+            color: #4CAF50; /* Text color turns green */
+            border-color: #45a049; /* Border color changes on hover */
+        }
+
+        .ngo-description {
+            margin-top: 15px; /* Add space between button and description */
+            font-size: 1em;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Our NGO Partners</h1>
+        <p>Below is a list of NGOs we work with, dedicated to various causes and initiatives.</p>
+
+        <div class="ngo-buttons">
+            <div class="ngo-box">
+                <button>Women Safety and Legal Support NGO's</button>
+                <p class="ngo-description">Focuses on empowering women through education, healthcare, and skill development programs.</p>
+            </div>
+            <div class="ngo-box">
+                <button>Education and Skill Development</button>
+                <p class="ngo-description">Provides education and resources to underprivileged children in rural areas.</p>
+            </div>
+            <div class="ngo-box">
+                <button>Shelter and Rehabilitation NGO's</button>
+                <p class="ngo-description">Dedicated to providing shelter and rehabilitation services for those in need.</p>
+            </div>
+            <div class="ngo-box">
+                <button>Financial Aid</button>
+                <p class="ngo-description">Supports women in need by providing financial assistance for legal aid, medical care, and safe housing.</p>
+            </div>
+            <!-- Add more NGO boxes here as needed -->
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the contact.css file -->
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="icon" href="C:\Users\Swathi Dharsan\Desktop\MP-III\images\logo.jpeg" type="image/png">
+    <title>SAFE HAVEN - Contact Us</title>
+</head>
+<body>
+    <main>
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us!</p>
+    
+        <div class="contact-container">
+            <!-- Left side with address -->
+            <div class="address-box">
+                <h3>Our Address</h3>
+                <p>Mkce,karur<br>New Delhi, India</p>
+                <h3>Email Us</h3>
+                <p>safehaven0123@gmail.com</p>
+                <h3>Phone</h3>
+                <p>+91 9344438752</p>
+            </div>
+    
+            <!-- Right side with contact form box -->
+            <div class="form-box">
+                <div class="contact-form-box">
+                    <form action="send_message.php" method="POST">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+    
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+    
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+    
+                        <button type="submit">Submit</button>
+                    </form>
+    
+                    <!-- Success or error message after form submission -->
+                    <?php if (isset($_GET['success']) && $_GET['success'] == 'true'): ?>
+                        <p class="success-message">Thank you! Your message has been sent successfully.</p>
+                    <?php elseif (isset($_GET['success']) && $_GET['success'] == 'false'): ?>
+                        <p class="error-message">Oops! Something went wrong, please try again.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </main>    
+    </body>
+        
+</html>
+    
+       
+        
+  

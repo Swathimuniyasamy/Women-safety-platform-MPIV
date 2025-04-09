@@ -1,0 +1,129 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+/* Login and Signup container styling */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* White with transparency */
+    padding: 25px; /* Slightly increased padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    max-width: 600px; /* Reduced max-width for smaller container */
+    width: 100%;
+    margin-top: 80px; /* Adjusted margin to push the container down */
+    margin-bottom:50 px;
+}
+
+/* Title styling */
+h2 {
+    font-size: 20px; /* Slightly increased font size */
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    animation: textPop 1s ease;
+    margin-bottom: 15px; /* More space below the title */
+}
+
+/* Labels and form inputs styling */
+label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin: 20px 0 10px; /* Space around labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="password"],
+select {
+    width: 95%;
+    padding: 10px; /* Slightly increased padding for inputs */
+    margin: 10px 0 20px; /* Increased margin for better spacing between inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+select:focus {
+    box-shadow: 0px 0px 8px rgba(81, 203, 238, 1);
+}
+
+/* Checkbox styling */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adds space between checkbox and label */
+    margin: 20px 0; /* Space around the checkbox section */
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px; /* Increased padding for larger button */
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    margin-top: 20px; /* Increased margin for more spacing from inputs */
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Links styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Bold effect for labels and paragraphs */
+p, label {
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes textPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
