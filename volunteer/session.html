@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Portal - Session</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    nav {
+      background: #46ade5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 40px;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section.hidden {
+      display: none;
+    }
+
+    .info-box {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #e8f0fe;
+      border-radius: 5px;
+    }
+
+    .session-list {
+      margin-top: 20px;
+    }
+
+    .session {
+      background: #e8f0fe;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+
+    .session button {
+      background-color: #46ade5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .session button:hover {
+      background-color: #368bcb;
+    }
+
+    .form-section {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .btn-submit {
+      background-color: #46ade5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #368bcb;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="volunteerhome.html">profile</a>
+    <a href="mywork.html">My Work</a>
+    <a href="sessions.html">Session</a>
+    <a href="aboutus.html">About Us</a>
+    <a onclick="logout()">Logout</a>
+  </nav>
+
+  <div class="container">
+    <section id="session" class="section">
+      <h2>Session Management</h2>
+
+      <!-- Section to add new session -->
+      <div class="form-section">
+        <h3>Add New Session</h3>
+        <form id="addSessionForm">
+          <label for="sessionTitle">Session Title:</label>
+          <input type="text" id="sessionTitle" name="sessionTitle" required>
+
+          <label for="sessionDate">Date:</label>
+          <input type="date" id="sessionDate" name="sessionDate" required>
+
+          <label for="sessionTime">Time:</label>
+          <input type="time" id="sessionTime" name="sessionTime" required>
+
+          <label for="sessionLocation">Location:</label>
+          <input type="text" id="sessionLocation" name="sessionLocation" required>
+
+          <label for="sessionDescription">Session Description:</label>
+          <textarea id="sessionDescription" name="sessionDescription" rows="4" required></textarea>
+
+          <button type="submit" class="btn-submit">Add Session</button>
+        </form>
+      </div>
+
+      <!-- Existing Sessions -->
+      <div class="info-box">
+        <h3>Your Scheduled Sessions</h3>
+        <div id="sessionList" class="session-list">
+          <!-- Dynamic session list will appear here -->
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    // Example sessions data for the demo (can be fetched from localStorage or a database)
+    let sessions = [];
+
+    // Show page functionality
+    function showPage(page) {
+      document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+      document.getElementById(page).classList.remove('hidden');
+    }
+
+    // Logout functionality
+    function logout() {
+      alert("You have logged out.");
+      window.location.href = "index.html";
+    }
+
+    // Load existing sessions
+    function loadSessions() {
+      const sessionListContainer = document.getElementById('sessionList');
+      sessionListContainer.innerHTML = ''; // Clear existing list
+
+      if (sessions.length === 0) {
+        sessionListContainer.innerHTML = '<p>No sessions scheduled yet.</p>';
+        return;
+      }
+
+      sessions.forEach((session, index) => {
+        const sessionDiv = document.createElement('div');
+        sessionDiv.classList.add('session');
+        sessionDiv.innerHTML = `
+          <h4>${session.title}</h4>
+          <p><strong>Date:</strong> ${session.date}</p>
+          <p><strong>Time:</strong> ${session.time}</p>
+          <p><strong>Location:</strong> ${session.location}</p>
+          <p><strong>Description:</strong> ${session.description}</p>
+          <button onclick="editSession(${index})">Edit</button>
+          <button onclick="removeSession(${index})">Remove</button>
+        `;
+        sessionListContainer.appendChild(sessionDiv);
+      });
+    }
+
+    // Add new session
+    document.getElementById('addSessionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const newSession = {
+        title: document.getElementById('sessionTitle').value,
+        date: document.getElementById('sessionDate').value,
+        time: document.getElementById('sessionTime').value,
+        location: document.getElementById('sessionLocation').value,
+        description: document.getElementById('sessionDescription').value,
+      };
+
+      // Add session to sessions array
+      sessions.push(newSession);
+
+      // Clear form and reload session list
+      document.getElementById('addSessionForm').reset();
+      loadSessions();
+    });
+
+    // Edit session
+    function editSession(index) {
+      const session = sessions[index];
+      document.getElementById('sessionTitle').value = session.title;
+      document.getElementById('sessionDate').value = session.date;
+      document.getElementById('sessionTime').value = session.time;
+      document.getElementById('sessionLocation').value = session.location;
+      document.getElementById('sessionDescription').value = session.description;
+
+      // Remove the session and let the user re-add it
+      removeSession(index);
+    }
+
+    // Remove session
+    function removeSession(index) {
+      sessions.splice(index, 1);
+      loadSessions();
+    }
+
+    // Load the sessions when the page is loaded
+    window.onload = function () {
+      loadSessions();
+    };
+  </script>
+
+</body>
+</html>

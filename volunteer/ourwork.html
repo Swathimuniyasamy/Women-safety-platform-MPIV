@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f3f4f6;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .work-box {
+      background: #e8f0fe;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+
+    .work-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .no-work {
+      color: #999;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #46ade5;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .back-button:hover {
+      background-color: #3487c9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back button that takes the user to the home page -->
+  <a href="user.html" class="back-button">← Back to Home</a>
+
+  <h2>Our Work</h2>
+  <div id="workContainer"></div>
+
+  <script>
+    function loadWork() {
+      const workContainer = document.getElementById("workContainer");
+      const workData = JSON.parse(localStorage.getItem("workItems")) || [];
+
+      if (workData.length === 0) {
+        workContainer.innerHTML = '<div class="no-work">No work has been added yet.</div>';
+        return;
+      }
+
+      workData.forEach(item => {
+        const box = document.createElement("div");
+        box.className = "work-box";
+        box.innerHTML = `
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <small>Date: ${item.date}</small><br>
+          <img src="${item.image}" alt="${item.title}">
+        `;
+        workContainer.appendChild(box);
+      });
+    }
+
+    // Load work on page load
+    loadWork();
+  </script>
+
+</body>
+</html>

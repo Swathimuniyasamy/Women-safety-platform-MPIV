@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Portal - Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+    }
+
+    nav {
+      background: #46ade5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 40px;
+      background: #fff;
+      min-height: 100vh;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .info-box {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #e8f0fe;
+      border-radius: 5px;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ddd;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body style="background-image: url('../image/login.jpg');">
+
+  <nav>
+    <a onclick="showPage('profile')">Profile</a>
+    <a href="mywork.html">My Work</a>
+    <a href="session.html">Session</a>
+    <a href="aboutus.html">AboutUs</a>
+    <a onclick="logout()">Logout</a>
+  </nav>
+
+  <div class="container">
+    <!-- Profile Section -->
+    <section id="profile" class="section">
+      <h2>Profile</h2>
+      <div class="info-box">Name: <span id="displayName"></span></div>
+      <div class="info-box">Email: <span id="displayEmail"></span></div>
+      <div class="info-box">Role: <span id="displayRole"></span></div>
+      
+      <!-- Back Button -->
+      <button class="back-button" onclick="goBack()">Back</button>
+    </section>
+
+    <!-- Other sections (not shown by default) -->
+    <section id="mywork" class="section hidden">
+      <h2>My Work</h2>
+      <p>Here you can view your assigned tasks and projects.</p>
+    </section>
+
+    <section id="session" class="section hidden">
+      <h2>Session</h2>
+      <p>Here you can manage your sessions, track attendance, and access training materials.</p>
+    </section>
+
+    <section id="aboutus" class="section hidden">
+      <h2>About Us</h2>
+      <p>Learn more about our mission and how you can contribute.</p>
+    </section>
+  </div>
+
+  <script>
+    let isProfileCreated = true;
+
+    function showPage(page) {
+      if (!isProfileCreated) {
+        alert("Please create your profile first!");
+        return;
+      }
+
+      document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+      document.getElementById(page).classList.remove('hidden');
+
+      if (page === 'profile') {
+        loadProfile();
+      }
+    }
+
+    function loadProfile() {
+      const user = JSON.parse(localStorage.getItem('user')) || {
+        name: 'Your Name',
+        email: 'your@email.com',
+        role: 'Volunteer'
+      };
+      document.getElementById('displayName').textContent = user.name;
+      document.getElementById('displayEmail').textContent = user.email;
+      document.getElementById('displayRole').textContent = user.role;
+    }
+
+    function logout() {
+      isProfileCreated = false;
+      localStorage.removeItem('user');
+      alert("You have logged out.");
+      window.location.href = "../html/home.html";
+    }
+
+    window.onload = function () {
+      const name = localStorage.getItem("name") || "John Doe";
+      const email = localStorage.getItem("email") || "user@example.com";
+      const role = localStorage.getItem("role") || "Safety Advocate";
+
+      document.getElementById("displayName").textContent = name;
+      document.getElementById("displayEmail").textContent = email;
+      document.getElementById("displayRole").textContent = role;
+
+      if (isProfileCreated) {
+        showPage('profile');
+      }
+    };
+
+    // Function for the Back button
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+
+</body>
+</html>

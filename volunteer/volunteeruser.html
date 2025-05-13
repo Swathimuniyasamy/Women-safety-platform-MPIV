@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+    }
+
+    .btn-container {
+      background: #46ade5;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      margin: 10px;
+      padding: 12px 24px;
+      background-color: white;
+      color: #46ade5;
+      border: 2px solid #46ade5;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #46ade5;
+      color: white;
+    }
+
+    .section {
+      padding: 30px;
+      background: #fff;
+      min-height: 100vh;
+      display: none;
+    }
+
+    .box {
+      background: #e8f0fe;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Buttons -->
+  <div class="btn-container">
+    <button class="btn" onclick="showSection('work')">Our Work</button>
+    <button class="btn" onclick="showSection('session')">Sessions</button>
+    <button class="btn" onclick="showSection('about')">About Us</button>
+  </div>
+
+  <!-- Sections -->
+  <div id="workSection" class="section">
+    <h2>Our Work</h2>
+    <div id="workContent"></div>
+  </div>
+
+  <div id="sessionSection" class="section">
+    <h2>Sessions</h2>
+    <div id="sessionContent"></div>
+  </div>
+
+  <div id="aboutSection" class="section">
+    <h2>About Us</h2>
+    <div class="box">
+      We are a team of dedicated individuals committed to creating a safer and empowered environment for women and communities.
+    </div>
+  </div>
+
+  <script>
+  const myWork = [
+    { title: "Distribute safety kits", status: "Completed", date: "2025-04-15" },
+    { title: "Conduct awareness session", status: "Pending", date: "2025-05-05" }
+  ];
+
+  const sessions = [
+    { topic: "Self-Defense Training", date: "2025-05-01" },
+    { topic: "First Aid Awareness", date: "2025-05-07" }
+  ];
+
+  function showSection(type) {
+    // Hide all sections
+    document.getElementById("workSection").style.display = "none";
+    document.getElementById("sessionSection").style.display = "none";
+    document.getElementById("aboutSection").style.display = "none";
+
+    // Clear previous content
+    document.getElementById("workContent").innerHTML = "";
+    document.getElementById("sessionContent").innerHTML = "";
+
+    // Show selected section
+    if (type === "work") {
+      const container = document.getElementById("workContent");
+      const workData = JSON.parse(localStorage.getItem("workItems")) || myWork;
+
+      if (workData.length === 0) {
+        container.innerHTML = '<div class="box">No work added yet.</div>';
+      } else {
+        workData.forEach(item => {
+          const box = document.createElement("div");
+          box.className = "box";
+          box.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>Status: ${item.status}</p>
+            <small>Date: ${item.date || 'N/A'}</small>
+            ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width: 100%; margin-top: 10px;">` : ''}
+          `;
+          container.appendChild(box);
+        });
+      }
+
+      document.getElementById("workSection").style.display = "block";
+    }
+
+    if (type === "session") {
+      const container = document.getElementById("sessionContent");
+      sessions.forEach(sess => {
+        const box = document.createElement("div");
+        box.className = "box";
+        box.innerHTML = `<strong>${sess.topic}</strong><br>Date: ${sess.date}`;
+        container.appendChild(box);
+      });
+      document.getElementById("sessionSection").style.display = "block";
+    }
+
+    if (type === "about") {
+      document.getElementById("aboutSection").style.display = "block";
+    }
+  }
+</script>
+
+
+</body>
+</html>

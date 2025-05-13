@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Portal - My Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f3f4f6;
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background: #46ade5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    section {
+      flex: 1;
+      padding: 40px;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .work-item {
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #e8f0fe;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .work-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .work-item h3 {
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .work-item p {
+      color: #555;
+    }
+
+    .work-form input, .work-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .work-form input[type="date"] {
+      padding: 10px;
+    }
+
+    .work-form button {
+      padding: 10px 20px;
+      background-color: #46ade5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .work-form button:hover {
+      background-color: #3487c9;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="volunteerhome.html">Profile</a>
+    <a href="mywork.html">My Work</a>
+    <a href="session.html">Session</a>
+    <a href="aboutus.html">About Us</a>
+    <a onclick="logout()">Logout</a>
+  </nav>
+
+  <div class="container">
+    <!-- My Work Section -->
+    <section id="mywork" class="section">
+      <h2>My Work</h2>
+      <p>Track the impact of your volunteer work here. Add details about programs you've conducted, including images and progress.</p>
+      
+      <!-- Form to Add Work -->
+      <div class="work-form">
+        <h3>Add New Activity</h3>
+        <input type="text" id="activityTitle" placeholder="Activity Title" required>
+        <textarea id="activityDescription" placeholder="Describe the activity..." required></textarea>
+        <input type="file" id="activityImage" accept="image/*">
+        <input type="date" id="activityDate" required>
+        <button onclick="addWork()">Add Activity</button>
+      </div>
+
+      <!-- Display Work Items -->
+      <div id="workList">
+        <!-- Dynamic work items will appear here -->
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let workItems = JSON.parse(localStorage.getItem('workItems')) || [];
+
+    function showPage(page) {
+      document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+      document.getElementById(page).classList.remove('hidden');
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      localStorage.removeItem('workItems');
+      alert("You have logged out.");
+      window.location.href = "volunteerhome.html";
+    }
+
+    function addWork() {
+      const title = document.getElementById('activityTitle').value;
+      const description = document.getElementById('activityDescription').value;
+      const image = document.getElementById('activityImage').files[0];
+      const date = document.getElementById('activityDate').value;
+
+      if (title && description && image && date) {
+        const reader = new FileReader();
+        reader.onloadend = function () {
+          const workItem = {
+            title: title,
+            description: description,
+            image: reader.result,
+            date: date
+          };
+
+          workItems.push(workItem);
+          localStorage.setItem('workItems', JSON.stringify(workItems));
+
+          displayWorkItems();
+          clearForm();
+        };
+        reader.readAsDataURL(image);
+      } else {
+        alert("Please fill all fields and upload an image.");
+      }
+    }
+
+    function displayWorkItems() {
+      const workList = document.getElementById('workList');
+      workList.innerHTML = '';
+
+      workItems.forEach(item => {
+        const workItemDiv = document.createElement('div');
+        workItemDiv.classList.add('work-item');
+        workItemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <small>Completed on: ${item.date}</small>
+        `;
+        workList.appendChild(workItemDiv);
+      });
+    }
+
+    function clearForm() {
+      document.getElementById('activityTitle').value = '';
+      document.getElementById('activityDescription').value = '';
+      document.getElementById('activityImage').value = '';
+      document.getElementById('activityDate').value = '';
+    }
+
+    window.onload = function () {
+      displayWorkItems();
+    };
+    const myWork = [
+  { title: "Distribute safety kits", status: "Completed" },
+  { title: "Conduct awareness session", status: "Pending" }
+];
+localStorage.setItem("myWork", JSON.stringify(myWork));
+
+  </script>
+
+</body>
+</html>

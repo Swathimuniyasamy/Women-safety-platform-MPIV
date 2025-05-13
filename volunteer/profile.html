@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    nav {
+      background: #46ade5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+    }
+
+    .profile-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    .profile-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .profile-form button {
+      background-color: #46ade5;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .profile-form button:hover {
+      background-color: #3b8bbf;
+    }
+
+    .profile-form a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #46ade5;
+      text-decoration: none;
+    }
+
+    .profile-form a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="volunteerhome.html">Home</a>
+    <a href="javascript:void(0);" onclick="window.location.href='logout.html';">Logout</a>
+  </nav>
+
+  <!-- Profile Form -->
+  <div class="container">
+    <div class="profile-container">
+      <div class="profile-form">
+        <h2>Profile</h2>
+        <form id="profileForm">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+          <label for="role">Volunteer Role</label>
+          <input type="text" id="role" name="role" placeholder="Enter your volunteer role" required>
+
+          <button type="button" onclick="updateProfile()">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to load current profile data
+    window.onload = function() {
+      const user = JSON.parse(localStorage.getItem('user')) || {
+        name: 'Your Name',
+        email: 'your@email.com',
+        role: 'Volunteer'
+      };
+      document.getElementById('name').value = user.name;
+      document.getElementById('email').value = user.email;
+      document.getElementById('role').value = user.role;
+    }
+
+    // Function to update the profile data
+    function updateProfile() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const role = document.getElementById('role').value;
+
+      // Save updated data to localStorage
+      const user = { name, email, role };
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Notify the user that their profile has been updated
+      alert("Profile updated successfully!");
+    }
+  </script>
+
+</body>
+</html>

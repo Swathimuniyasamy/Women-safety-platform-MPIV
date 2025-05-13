@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Volunteer Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Added Google Fonts -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    nav {
+      background: #46ade5;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 40px;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      color: #333;
+    }
+
+    .vision, .mission {
+      margin-top: 30px;
+    }
+
+    /* Vision Section Font Style */
+    .vision h3 {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      color: #46ade5;
+    }
+
+    .vision p {
+      font-family: 'Lora', serif;
+      line-height: 1.6;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    /* Mission Section Font Style */
+    .mission h3 {
+      font-family: 'Lora', sans-serif;
+      font-weight: 600;
+      color: #46ade5;
+    }
+
+    .mission p {
+      font-family: 'Lora', sans-serif;
+      line-height: 1.6;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .info-box {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #e8f0fe;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="volunteerhome.html">Profile</a>
+    <a href="mywork.html">My Work</a>
+    <a href="session.html">Session</a>
+    <a href="aboutus.html">About Us</a>
+    <a onclick="logout()">Logout</a>
+  </nav>
+
+  <div class="container">
+    <!-- About Us Section -->
+    <section id="aboutus" class="section">
+      <h2>About Us</h2>
+      <div class="vision">
+        <h3>Our Vision</h3>
+        <p>Our vision is to build a community of passionate volunteers who are dedicated to making a meaningful difference in the world. We envision a future where volunteers come together from all walks of life to support causes that matter, amplify their collective impact, and empower individuals and communities to thrive. By fostering collaboration, growth, and continuous learning, we aim to create a world where every volunteer’s contribution leads to tangible change and inspires others to join the journey of giving back.</p>
+      </div>
+      
+      <div class="mission">
+        <h3>Our Mission</h3>
+        <p>Our mission is to inspire and engage individuals in meaningful volunteer work that contributes to building stronger, more resilient communities. We strive to provide volunteers with the tools, resources, and opportunities they need to make a tangible difference in the lives of those they serve. Through collaborative efforts and commitment, we aim to create a positive, lasting impact on society by empowering volunteers to take action, share their skills, and work together to address pressing challenges.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+      document.getElementById(page).classList.remove('hidden');
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      alert("You have logged out.");
+      window.location.href = "volunteerhome.html";
+    }
+
+    window.onload = function () {
+      showPage('aboutus');
+    };
+  </script>
+
+</body>
+</html>
